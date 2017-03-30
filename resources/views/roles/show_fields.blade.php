@@ -1,0 +1,45 @@
+<!-- Id Field -->
+<div class="form-group">
+    {!! Form::label('id', 'Id:') !!}
+    <p>{!! $role->id !!}</p>
+</div>
+
+<!-- Name Field -->
+<div class="form-group">
+    {!! Form::label('name', 'Name:') !!}
+    <p>{!! $role->name !!}</p>
+</div>
+
+<!-- Display Name Field -->
+<div class="form-group">
+    {!! Form::label('display_name', 'Display Name:') !!}
+    <p>{!! $role->display_name !!}</p>
+</div>
+
+<!-- Description Field -->
+<div class="form-group">
+    {!! Form::label('description', 'Description:') !!}
+    <p>{!! $role->description !!}</p>
+</div>
+
+<div class="form-group">
+    {!! Form::label('permissions', 'Permissions:') !!}
+    @if(!empty($rolePermissions))
+        @foreach($rolePermissions as $v)
+            <label class="label label-success">{{ $v->display_name }}</label>
+        @endforeach
+    @endif
+</div>
+
+<!-- Created At Field -->
+<div class="form-group">
+    {!! Form::label('created_at', 'Created At:') !!}
+    <p>{!! $role->created_at !!}</p>
+</div>
+
+<!-- Updated At Field -->
+<div class="form-group">
+    {!! Form::label('updated_at', 'Updated At:') !!}
+    <p>{!! $role->updated_at !!}</p>
+</div>
+
