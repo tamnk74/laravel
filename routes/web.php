@@ -19,32 +19,21 @@ Auth::routes();
 
 Route::auth();
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth'], 'prefix' => 'backend'], function() {
 
+    Route::get('/', 'HomeController@index');
 	Route::get('/home', 'HomeController@index');
 
-    Route::resource('users','UserController', ['only' => ['create', 'store'], 'middleware' =>
-        'permission:user-create']);
-    Route::resource('users','UserController', ['only' => ['edit', 'update'], 'middleware' =>
-        'permission:user-update']);
-    Route::resource('users','UserController', ['only' => ['show'], 'middleware' =>
-        'permission:user-show']);
-    Route::resource('users','UserController', ['only' => ['destroy'], 'middleware' =>
-        'permission:user-delete']);
-    Route::resource('users','UserController', ['only' => ['index'], 'middleware' =>
-        'permission:user-list']);
+    Route::resource('users','UserController', ['middleware' =>'permission:user-manager']);
 
-    Route::resource('roles', 'RoleController', ['middleware' =>
-		'permission:role-list']);
+    Route::resource('roles', 'RoleController', ['middleware' =>	'permission:role-manager']);
 
-    Route::resource('permissions', 'PermissionController', ['middleware' =>
-        'permission:permission-manage']);
+    Route::resource('permissions', 'PermissionController', ['middleware' => 'permission:permission-manager']);
 
-	Route::resource('roles', 'RoleController', ['only' => ['index', 'show'], 'middleware' => 
-		'permission:role-list']);
+    Route::get('profile', 'ProfileController@index')->name('profile');
+    Route::match(['put', 'patch'], 'profiles/update', 'ProfileController@update')->name('profiles.update');
+    Route::get('profiles/edit', 'ProfileController@edit')->name('profiles.edit');
 
-	Route::resource('roles', 'RoleController',['except' => ['index', 'show'], 'middleware' => 
-		'permission:role-manage']);	
 });
 
 

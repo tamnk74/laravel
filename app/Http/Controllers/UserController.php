@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\CreateUserRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -20,9 +21,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::orderBy('id','DESC')->paginate(5);
-        return view('users.index',compact('users'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        $users = User::orderBy('id','DESC')->paginate(25);
+        return view('users.index',compact('users'));
     }
 
     /**
@@ -42,7 +42,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UpdateUserRequest $request)
+    public function store(CreateUserRequest $request)
     {
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
@@ -90,15 +90,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
-            'roles' => 'required'
-        ]);
-
         $input = $request->all();
         if(!empty($input['password'])){
             $input['password'] = Hash::make($input['password']);

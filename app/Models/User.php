@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'avatar', 'full_name', 'phone_number', 'birthday', 'address'
     ];
 
     /**
@@ -29,4 +29,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Hash password
+     * @param $input
+     */
+    public function setPasswordAttribute($input)
+    {
+        if ($input) {
+            $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
+        }
+    }
+
+    /**
+     * default avatar
+     * @param $input
+     */
+    public function getAvatarAttribute()
+    {
+        return $this->attributes['avatar'] != null ? $this->attributes['avatar'] : 'default.png';
+    }
 }

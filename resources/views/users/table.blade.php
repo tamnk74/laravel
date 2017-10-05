@@ -1,17 +1,17 @@
 <table class="table table-responsive" id="users-table">
     <thead>
+        <th>No</th>
         <th>Name</th>
         <th>Email</th>
-        <th>Password</th>
         <th>Roles</th>
         <th colspan="3">Action</th>
     </thead>
     <tbody>
     @foreach($users as $user)
         <tr>
+            <td>{!! $loop->iteration !!}</td>
             <td>{!! $user->name !!}</td>
             <td>{!! $user->email !!}</td>
-            <td>{!! $user->password !!}</td>
             <td>
                 @if(!empty($user->roles))
                 @foreach($user->roles as $v)

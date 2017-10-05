@@ -14,42 +14,17 @@ class PermissionTableSeeder extends Seeder
     {
         $permission = [
             [
-                'name' => 'user-list',
+                'name' => 'user-manager',
                 'display_name' => 'User Show',
                 'description' => 'View users list'
             ],
-            [
-                'name' => 'user-show',
-                'display_name' => 'User Show',
-                'description' => 'View account'
-            ],
-            [
-                'name' => 'user-update',
-                'display_name' => 'User Update',
-                'description' => 'Update users'
-            ],
-            [
-                'name' => 'user-create',
-                'display_name' => 'User Create',
-                'description' => 'Create users'
-            ],
-            [
-                'name' => 'user-delete',
-                'display_name' => 'User Delete',
-                'description' => 'Delete users'
-            ],
         	[
-        		'name' => 'role-list',
-        		'display_name' => 'Display Role Listing',
-        		'description' => 'See only Listing Of Role'
-        	],
-        	[
-        		'name' => 'role-manage',
+        		'name' => 'role-manager',
         		'display_name' => 'Manage Role',
         		'description' => 'Create, Update, Delete a Role'
         	],
             [
-                'name' => 'permission-manage',
+                'name' => 'permission-manager',
                 'display_name' => 'Manage Permission',
                 'description' => 'Create, Update, Delete, View a Permission'
             ]

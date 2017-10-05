@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
-class UpdateUserRequest extends FormRequest
+class UpdateProfileRequest extends FormRequest
 {
 
     /**
@@ -27,8 +27,14 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$this->route('user'),
+            'email' => 'required|email|unique:users,email,'.Auth::user()->id,
             'password' => 'same:confirm-password',
+            'avatar' => 'sometimes|nullable|mimes:jpeg,jpg,png,gif|max:10000',
+            'full_name' => 'min:0|max:100',
+            'address' => 'min:0|max:255',
+            'birthday' => 'sometimes|nullable|date',
+            'phone_number' => 'sometimes|nullable|regex:/^[0]{1}[19]{1}[0-9]{8,9}$/',
         ];
     }
 }
+
