@@ -29,7 +29,7 @@ class UpdateProfileRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.Auth::user()->id,
             'password' => 'same:confirm-password',
-            'avatar' => 'sometimes|nullable|mimes:jpeg,jpg,png,gif|max:10000',
+            'avatar' => 'sometimes|nullable|mimes:jpeg,jpg,png,gif|max:2048',
             'full_name' => 'min:0|max:100',
             'address' => 'min:0|max:255',
             'birthday' => 'sometimes|nullable|date',
