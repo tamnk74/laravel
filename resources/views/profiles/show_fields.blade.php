@@ -20,6 +20,10 @@
                 <a class="pull-right">{!! $user->full_name !!}</a>
             </li>
             <li class="list-group-item">
+                <b>{!! Form::label('email', __('users.label_email')) !!}</b>
+                <a class="pull-right">{!! $user->email !!}</a>
+            </li>
+            <li class="list-group-item">
                 <b>{!! Form::label('full_name', __('users.label_birthday')) !!}</b>
                 <a class="pull-right">{!! $user->birthday !!}</a>
             </li>

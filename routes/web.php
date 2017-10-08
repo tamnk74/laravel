@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 Route::get('/home', function () {
     return view('welcome');
-});
+})->name('home');
 
 Auth::routes();
 
@@ -25,7 +25,7 @@ Route::auth();
 Route::group(['middleware' => ['auth'], 'prefix' => 'backend'], function() {
 
     Route::get('/', 'HomeController@index');
-	Route::get('/home', 'HomeController@index');
+	Route::get('/home', 'HomeController@index')->name('dashboard');
 
     Route::resource('users','UserController', ['middleware' =>'permission:user-manager']);
 

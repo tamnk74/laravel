@@ -1,3 +1,4 @@
+@permission('user-manager')
 <li class="treeview {{ Request::is('backend/users*') || Request::is('backend/permissions*') || Request::is('backend/roles*')? 'active' : '' }}">
     <a href="#">
     <i class="fa fa-users"></i>
@@ -19,3 +20,4 @@
         </li>
     </ul>
 </li>
+@endpermission

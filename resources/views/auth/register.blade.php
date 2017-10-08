@@ -90,6 +90,12 @@
                 @endif
             </div>
 
+            <div class="form-group has-feedback{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+                <strong>Captcha:</strong>
+                {!! app('captcha')->display() !!}
+                {!! $errors->first('g-recaptcha-response', '<p class="alert alert-danger">:message</p>') !!}
+            </div>
+
             <div class="row">
                 <div class="col-xs-8">
                     <div class="checkbox icheck">
@@ -118,7 +124,7 @@
 
 <!-- AdminLTE App -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.3/js/app.min.js"></script>
-
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <script>
     $(function () {
         $('input').iCheck({
